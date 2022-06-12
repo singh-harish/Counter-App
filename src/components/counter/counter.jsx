@@ -1,10 +1,12 @@
 import { Component } from "react";
+import PropTypes from 'prop-types'
 import "./counter.css"
+import CounterButton from "../counterButton/counterButton";
 
 class Counter extends Component {
 
     // initial state is stored in constructor
-    constructor(){
+    constructor() {
         super(); // Never Miss
         this.state = {
             counter: 0
@@ -15,22 +17,29 @@ class Counter extends Component {
         // we can use arrow function if you dont want to bind each methods
     }
 
-    // Heart and soul, render() method
     render() {
         return (
             <div className="counter">
-                <button name="button" onClick={this.increment}>+{this.props.by}</button>
+                <CounterButton by={1} incrementMethod={this.increment} />
+                <CounterButton by={2} incrementMethod={this.increment} />
+                <CounterButton by={5} incrementMethod={this.increment} />
+                <CounterButton by={10} incrementMethod={this.increment} />
+                <CounterButton by={50} incrementMethod={this.increment} />
+                <CounterButton by={100} incrementMethod={this.increment} />
                 <h1 className="count">{this.state.counter}</h1>
             </div>
         )
     }
 
-    increment(){
+    increment(by) {
         // use setState instead of directly updating state
         this.setState(
-            {counter: this.state.counter+=this.props.by}
+            (prevState) => {
+            return {counter: prevState.counter + by};
+            }
         );
     }
+
 }
 
 export default Counter;
