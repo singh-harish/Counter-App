@@ -12,6 +12,8 @@ class Counter extends Component {
             counter: 0
         }
         this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+        this.reset = this.reset.bind(this);
         // bind 'this' with increment() method in order to use 'this' inside increment() method
 
         // we can use arrow function if you dont want to bind each methods
@@ -20,13 +22,14 @@ class Counter extends Component {
     render() {
         return (
             <div className="counter">
-                <CounterButton by={1} incrementMethod={this.increment} />
-                <CounterButton by={2} incrementMethod={this.increment} />
-                <CounterButton by={5} incrementMethod={this.increment} />
-                <CounterButton by={10} incrementMethod={this.increment} />
-                <CounterButton by={50} incrementMethod={this.increment} />
-                <CounterButton by={100} incrementMethod={this.increment} />
+                <CounterButton by={1} incrementMethod={this.increment} decrementMethod={this.decrement} />
+                <CounterButton by={2} incrementMethod={this.increment} decrementMethod={this.decrement} />
+                <CounterButton by={5} incrementMethod={this.increment} decrementMethod={this.decrement} />
+                <CounterButton by={10} incrementMethod={this.increment} decrementMethod={this.decrement} />
+                <CounterButton by={50} incrementMethod={this.increment} decrementMethod={this.decrement} />
+                <CounterButton by={100} incrementMethod={this.increment} decrementMethod={this.decrement} />
                 <h1 className="count">{this.state.counter}</h1>
+                <button name="button" onClick={this.reset}>RESET</button>
             </div>
         )
     }
@@ -35,11 +38,25 @@ class Counter extends Component {
         // use setState instead of directly updating state
         this.setState(
             (prevState) => {
-            return {counter: prevState.counter + by};
+                return { counter: prevState.counter + by };
             }
         );
     }
 
+    decrement(by) {
+        // use setState instead of directly updating state
+        this.setState(
+            (prevState) => {
+                return { counter: prevState.counter - by };
+            }
+        );
+    }
+
+    reset() {
+        this.setState(
+            { counter: 0 }
+        )
+    }
 }
 
 export default Counter;

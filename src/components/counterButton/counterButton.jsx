@@ -11,6 +11,7 @@ class CounterButton extends Component {
             counter: 0
         }
         this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
         // bind 'this' with increment() method in order to use 'this' inside increment() method
 
         // we can use arrow function if you dont want to bind each methods
@@ -21,6 +22,7 @@ class CounterButton extends Component {
         return (
             <div className="counterButton">
                 <button name="button" onClick={this.increment}>+{this.props.by}</button>
+                <button name="button" onClick={this.decrement}>-{this.props.by}</button>
                 {/* <h1 className="count">{this.state.counter}</h1> */}
             </div>
         )
@@ -30,10 +32,20 @@ class CounterButton extends Component {
         // use setState instead of directly updating state
         this.setState(
             (prevState) => {
-                return {counter: prevState.counter += this.props.by}
+                return {counter: prevState.counter + this.props.by}
             }
         );
         this.props.incrementMethod(this.props.by);
+    }
+
+    decrement() {
+        // use setState instead of directly updating state
+        this.setState(
+            (prevState) => {
+                return {counter: prevState.counter - this.props.by}
+            }
+        );
+        this.props.decrementMethod(this.props.by);
     }
 }
 

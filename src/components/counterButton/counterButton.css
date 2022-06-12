@@ -2,10 +2,10 @@ button {
     background: none;
     color: #ffa260;
     border: 3px solid;
-    padding: 1em 2em;
-    font-size: 1em;
+    padding: 0.8em 1.5em;
+    font-size: 0.8em;
     transition: all 0.5s;
-    margin: 5px;
+    margin: 2px 5px;
   }
   
   button:hover {
